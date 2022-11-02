@@ -47,8 +47,8 @@ Cuenta el número de apariciones del string et en todos los archivos del directo
 BONUS
 Creamos un sript de shell (archivo extensión .sh) que contenga varias instrucciones
 	$ echo "ls -la | wc -l" > script_echo.sh # solo escribe en una línea
-	$ cat > script_cat.sh # permite escribir multilínea (ENTER), se finaliza con ENTER + 		"CTRL + C"
-	$ vim script_vim.sh # abre el editor VIM, para escribir pulsa "i", para finalizar ESC + 	":x" + ENTER
+	$ cat > script_cat.sh # permite escribir multilínea (ENTER), se finaliza con ENTER + "CTRL + C"
+	$ vim script_vim.sh # abre el editor VIM, para escribir pulsa "i", para finalizar ESC + ":x" + ENTER
 Ejecutamos el script
 	$ bash script_echo.sh
 	$ bash script_cat.sh
