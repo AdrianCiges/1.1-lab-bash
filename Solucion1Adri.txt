@@ -8,34 +8,82 @@ Copia el archivo sed.txt dentro de la carpeta lorem a la carpeta lorem-copy. TIP
 	$ mkdir lorem_copy
 	$ cp sed.txt lorem_copy/sed2.txt
 Copia los otros dos archivos de la carpeta lorem a la carpeta lorem-copy en una sola línea.
-	$ cp lorem/* lorem/lorem_copy/
+	$ cp lorem/* lorem_copy
 Muestra el contenido del archivo sed.txt dentro de la carpeta lorem.
 	$ cat lorem/sed.txt
 Muestra el contenido de los archivos at.txt y lorem.txt dentro de la carpeta lorem.
-	$ cat lorem/at.txt lorem.txt
+	$ cat lorem/at.txt lorem/lorem.txt
 Visualiza las primeras 3 líneas del archivo sed.txt dentro de la carpeta lorem-copy
-	$ head -n3 lorem/lorem_copy/sed.txt
+	$ head -n3 lorem_copy/sed.txt
 Visualiza las ultimas 3 líneas del archivo sed.txt dentro de la carpeta lorem-copy
-	$ tail -n3 lorem/lorem_copy/sed.txt
+	$ tail -n3 lorem_copy/sed.txt
 Añade Homo homini lupus. al final de archivo sed.txt dentro de la carpeta lorem-copy.
-	$ echo "Homo homini lupus" >> lorem/lorem_copy/sed.txt
+	$ echo 'Homo homini lupus' >> lorem_copy/sed.txt
 Visualiza las últimas 3 líneas del archivo sed.txt dentro de la carpeta lorem-copy. Deberías ver ahora Homo homini lupus..
-	$ tail -n3 lorem/lorem_copy/sed.txt
+	$ tail -n3 lorem_copy/sed.txt
 Sustituye todas las apariciones de et por ET del archivo at.txt dentro de la carpeta lorem-copy. Deberás usar sed.
-	$ sed -i s/et/ET/g lorem/lorem_copy/sed.txt
+	$ sed -i s/et/ET/g lorem_copy/at.txt
 Encuentra al usuario activo en el sistema.
 	$ id -un (whoami)
 Encuentra dónde estás en tu sistema de ficheros.
 	$ pwd
 Lista los archivos que terminan por .txt en la carpeta lorem.
 	$ ls -S lorem/*.txt
+	$ ls lorem/*.txt
 Cuenta el número de líneas que tiene el archivo sed.txt dentro de la carpeta lorem.
-	$ wc lorem/sed.txt
+	$ wc -l lorem/sed.txt
 Cuenta el número de archivos que empiezan por lorem que están en este directorio y en directorios internos.
 	$ ls -d lorem* | wc -l
+	$ find */lorem.* | wc -l
 Encuentra todas las apariciones de et en at.txt dentro de la carpeta lorem.
-	$ grep "et" lorem/at.txt
+	$ grep -o "et" lorem/at.txt
 Cuenta el número de apariciones del string et en at.txt dentro de la carpeta lorem.
-	$ grep "et" lorem/at.txt | wc -l
+	$ grep -o "et" lorem/at.txt | wc -l
+Cuenta el número de apariciones del string et en todos los archivos del directorio lorem-copy.
+	$ grep -o "et" lorem_copy/* | wc -l
 Cuenta el número de apariciones del string et en todos los archivos del directorio lorem-copy.
 	$ grep "et" lorem/lorem_copy/*.txt | wc -l
+	
+BONUS
+Creamos un sript de shell (archivo extensión .sh) que contenga varias instrucciones
+	$ echo "ls -la | wc -l" > script_echo.sh # solo escribe en una línea
+	$ cat > script_cat.sh # permite escribir multilínea (ENTER), se finaliza con ENTER + 		"CTRL + C"
+	$ vim script_vim.sh # abre el editor VIM, para escribir pulsa "i", para finalizar ESC + 	":x" + ENTER
+Ejecutamos el script
+	$ bash script_echo.sh
+	$ bash script_cat.sh
+	$ bash script_vim.sh
+Almacena en una variable name tu nombre.
+	$ export name='mi_nombre'
+Imprime esa variable.
+	$ echo $name
+Crea un directorio nuevo que se llame como el contenido de la variable name.
+	$ mkdir $name
+Elimina ese directorio.
+	$ rmdir $name
+Muestra los procesos de forma jerárquica que se están ejecutando en tu ordenador:
+Usando el comando top o htop
+	$ top
+Usando el comando ps con argumentos
+	$ ps -ef
+Muestra información sobre tu procesador por pantalla
+	$ sysctl -a | grep machdep.cpu
+Crea 3 alias y haz que estén disponibles cada vez que inicias sesión
+	$ cd ~
+	$ sudo vim .bashrc # Editar el archivo .bashrc con VIM
+# para escribir pulsa "i", para finalizar ESC + ":x" + ENTER
+	alias ll='ls -la'
+	alias code='cd ~/Programación/Code/Ironhack/DSFT-08.22'
+	alias jp='jupyer lab'
+	$ source ~/.bashrc # Vuelve a leer el archivo para aplicar los cambios inmediatamente
+Comprime las carpetas lorem y lorem-copy en un archivo llamado lorem-compressed.tar.gz
+	$ tar -czf lorem-compressed.tar.gz lorem lorem-copy
+Descomprime el archivo lorem-compressed.tar.gz en la carpeta lorem-uncompressed
+	$ tar -czf lorem-compressed.tar.gz lorem lorem-copy
+Crea un script bash para imprimir los numeros de 1 a 100.
+	$ vim script.sh
+	$ for((i=1;i<=100;i++))
+	$ do
+	$ echo $i
+	$ done
+	$ bash script.sh
